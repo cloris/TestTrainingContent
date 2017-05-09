@@ -1,0 +1,2 @@
+bin\Debug\OfficeAppManifests\StatementOfWorkManifest.xml
+D:\TrainingContent\TFS\src\FY17Q4\O3652\O3652-2 Deep Dive in Office Word Add-ins\Completed Projects\Exercise 1\StatementOfWork\StatementOfWork\bin\Debug\StatementOfWork.debugapp

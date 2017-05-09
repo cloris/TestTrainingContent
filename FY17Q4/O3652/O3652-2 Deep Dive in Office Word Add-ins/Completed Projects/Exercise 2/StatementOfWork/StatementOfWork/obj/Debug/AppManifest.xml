@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
+     Name="StatementOfWork"
+     ProductID="{5666001f-5788-43c4-a21b-69a430355eb7}"
+     Version="1.0.0.0"
+     SharePointMinVersion="15.0.0.0"
+>
+  <Properties>
+    <Title>StatementOfWork</Title>
+    <StartPage>https://go.microsoft.com/fwlink/?LinkID=278993</StartPage>
+  </Properties>
+
+  <AppPrincipal>
+    <Internal />
+  </AppPrincipal>
+</App>

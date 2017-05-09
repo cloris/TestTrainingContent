@@ -1,0 +1,7 @@
+False
+079e0207-0893-4e37-a16a-fc8b8d8144c0536d5c6f-662a-420b-8bf8-de0fd8eb0a96
+{292ee5b8-ee6e-4749-b772-4d53b327d81e}{ebd8f052-dfb5-40fe-a18d-c8d115c9a5af}
+{543eb53a-2d70-4969-aa38-baf305d89471}
+1.0.0.0
+StatementOfWork
+_layouts/15/

@@ -1,0 +1,7 @@
+False
+2fcf78d0-b745-4f34-b058-9cd2136938fceced4330-1011-4d5a-8009-b62623faefd6
+{b723fcd3-e45f-4f3d-b299-a35f82632f8c}{b559f6e9-9687-4b73-9221-1ee96a146f30}
+{ec81e1b1-cf60-4662-a0e1-b94f1f595b30}
+1.0.0.0
+StatementOfWork
+_layouts/15/
