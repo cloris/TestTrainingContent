@@ -11,18 +11,18 @@ Office Add-ins let you add your solution where ever they run. In PowerPoint, add
 1. Launch Visual Studio 2017
 2. In Visual Studio 2017, select **File | New | Project**. Expand **Templates**, **Visual C#**, **Office/SharePoint** ,**Add-ins**. Select **PowerPoint Web Add-in**. Name the project **HelloWorld** and click **OK**.
 
-    ![Screenshot of creating project in Visual Studio](Images/Fig01.PNG)
+    ![Screenshot of creating project in Visual Studio](Images/Fig01.png)
 
 3. When you create a new **PowerPoint Web Add-in** project, Visual Studio prompts you with the **Choose the add-in type** page of the **Create Office Add-in** dialog. This is the point where you select the type of add-in you want to create. Leave the default setting with the radio button titled **Add new functionalities to PowerPoint** and select **Finish** to continue.
 
-    ![Screenshot of creating project in Visual Studio](Images/Fig02.PNG)
+    ![Screenshot of creating project in Visual Studio](Images/Fig02.png)
 
 4. Visual Studio will create the project. There are a few parts that are created for you:
 	- A manifest xml file - this holds the metadata that your add-in needs to run in Office, including how it will present itself on the ribbon.
 	- A HelloWorldWeb project with a Home.html and Home.js - The HelloWorldWeb project in the solution contains the HTLM and Javascript you need to run your Office Add-in.
 5. Use the Solution Explorer to drill down into the **HelloWorld.xml** file.
 
-    ![Screenshot of choosing HelloWorld.xml file](Images/Fig03.PNG)
+    ![Screenshot of choosing HelloWorld.xml file](Images/Fig03.png)
 
 6. Now, find the XML block that looks like this. Take a minute and read through it as it describes how add-ins can integrate with the Office UI. The example below demonstrates how an add-in can add a button to the PowerPoint ribbon's Home tab.
 
@@ -176,16 +176,16 @@ Office Add-ins let you add your solution where ever they run. In PowerPoint, add
 18. Next, we will create the web service to make the call to get Bing's photo of the day.
 19. Add a new folder to the **HelloWorldWeb** project named **Controllers**.  
 
-	![Screenshot of controllers folder](Images/Fig05.PNG)  
+	![Screenshot of controllers folder](Images/Fig05.png)  
 
 20. Right-click the **Controllers** folder and select **Add > New Scaffolded Item...**.
 21. In the **Add Scaffold** dialog, select **Web API 2 Controller - Empty** and click the **Add** button.  
 
-	![Screenshot of creating a new scaffolded item](Images/Fig06.PNG)  
+	![Screenshot of creating a new scaffolded item](Images/Fig06.png)  
 
 22. On the **AddController** dialog, enter a name of **PhotoController** and click the **Add** button. 
 
-	![Screenshot of the Add Controller](Images/Fig07.PNG)  
+	![Screenshot of the Add Controller](Images/Fig07.png)  
 
 23. Open **PhotoController.cs**, let's replace the contents of the file with the code to call the Bing Service.  
 
@@ -254,7 +254,7 @@ Office Add-ins let you add your solution where ever they run. In PowerPoint, add
 25. Save your changes. Test your work by pressing **{F5}** to start the project. When PowerPoint loads, click the *Daily Photo* button on the home tab.
 26. Then click the insert image button and you should see the Bing Photo of the Day added, you can then use the designer in PowerPoint to customize the slide deck with designs based on the photo.
 
-	![Screenshot of photo added into PowerPoint](Images/Fig08.PNG)  
+	![Screenshot of photo added into PowerPoint](Images/Fig08.png)  
 
 ## Exercise 2: Create PowerPointTV Add-in to insert video into PowerPoint slides.
 *In this exercise you will learn how to create add-in that insert new embeddable objects into PowerPoint slides.*
@@ -263,12 +263,12 @@ Office Add-ins let you add your solution where ever they run. In PowerPoint, add
 2. In Visual Studio 2017, select **File | New | Project**. Expand **Templates**, **Visual C#**, **Office/SharePoint** ,**Add-ins**. Select **PowerPoint Web Add-in**. Name the project **PowerPointTV** and click **OK**.
 3. When you create a new **PowerPoint Web Add-in** project, Visual Studio prompts you with the **Choose the add-in type** page of the **Create Office Add-in** dialog. This is the point where you select the type of add-in you want to create. Leave the setting with the radio button titled **Insert content into PowerPoint slides** and select **Finish** to continue.
 
-    ![Screenshot of the previous step](Images/Fig09.PNG)
+    ![Screenshot of the previous step](Images/Fig09.png)
 
 4. Take a look at the structure of the new Visual Studio solution once it has been created. At a high-level, the new solution has been created using two Visual Studio projects named **PowerPointTV** and **PowerPointTVWeb**. You should also observe that the top project contains a top-level manifest for the app named **PowerPointTVManifest** which contains a single file named **PowerPointTV.xml**.  
 5. In the Solution Explorer, double-click on the node named **PowerPointTVManifest** to open the app manifest file in the Visual Studio designer. Locate the **Requested width** setting, modify **Requested height** to *600* pixels and **Requested width** to *1000* pixels.
 
-	![Screenshot of the previous step](Images/Fig10.PNG)
+	![Screenshot of the previous step](Images/Fig10.png)
 
 6. Save and close **PowerPointTVManifest**.
 7. Select **HelloWorldWeb** project.
