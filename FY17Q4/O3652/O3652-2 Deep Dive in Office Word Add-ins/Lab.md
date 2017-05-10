@@ -388,7 +388,7 @@ In this lab, you will get hands-on experience using two JavaScript APIs to inter
 
 	![Screenshot of the previous step](Images/Fig08.png)
 
-11. Locate the [Starter Files](./Starter Files) folder, you can find a xml file named **OpenXMLChart.xml**, add this XML file into **StatementOfWorkWeb** project.
+11. Locate the [Starter Files](./Starter%20Files) folder, you can find a xml file named **OpenXMLChart.xml**, add this XML file into **StatementOfWorkWeb** project.
 
 	![Screenshot of the previous step](Images/Fig09.png)
 
@@ -518,7 +518,7 @@ Congratulations! In this exercise you extended the Add-in's capabilities by addi
 
 	![Screenshot of the previous step](Images/Fig12.png)
 
-8. Locate the [Starter Files](./Starter Files) folder, you can find a xml file named **documentSample.xml**, add this XML file into **StatementOfWorkWeb** project.
+8. Locate the [Starter Files](./Starter%20Files) folder, you can find a xml file named **documentSample.xml**, add this XML file into **StatementOfWorkWeb** project.
 
 	![Screenshot of the previous step](Images/Fig13.png)
 
@@ -555,7 +555,7 @@ Congratulations! In this exercise you extended the Add-in's capabilities by addi
 *In this exercise you will continue working on the Visual Studio solution for the StatementOfWork add-in you created on in the previous exercise. You will extend the add-in's capabilities by adding JavaScript code to replace an image in the  active Word document by using the inlinePicture object members.*
 
 1. In Visual Studio, open **Home.js** in **StatementOfWorkWeb** project. 
-2. Locate the [Starter Files](./Starter Files) folder, you can find a document file named **base64Image.docx**, add this file into **StatementOfWorkWeb** project.
+2. Locate the [Starter Files](./Starter%20Files) folder, you can find a document file named **base64Image.docx**, add this file into **StatementOfWorkWeb** project.
 
 	![Screenshot of the previous step](Images/Fig15.png)
 
@@ -682,7 +682,7 @@ Congratulations! In this exercise you extended the Add-in's capabilities by addi
 *In this exercise, you will continue working on the Visual Studio solution for the StatementOfWork add-in you created in the previous steps. You will extend the add-in's capabilities by adding JavaScript code to insert an existing Word (docx) file at the end of the current document. This exercise is cummulative and assumes you completed  Exercise 2.*
 
 1. In Visual Studio, open **Home.js** in **StatementOfWorkWeb** project. 
-2. Locate the [Starter Files](./Starter Files) folder, you can find a document file named **base64Document.docx**, add this file into **StatementOfWorkWeb** project.
+2. Locate the [Starter Files](./Starter%20Files) folder, you can find a document file named **base64Document.docx**, add this file into **StatementOfWorkWeb** project.
 
 	![Screenshot of the previous step](Images/Fig21.png)
 
