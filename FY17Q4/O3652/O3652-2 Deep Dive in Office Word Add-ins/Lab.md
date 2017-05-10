@@ -119,10 +119,10 @@ In this lab, you will get hands-on experience using two JavaScript APIs to inter
 
 14. There are important references included in the **Home.html** head element. One for our Office.js library**<script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>**, which enables the developer to interact with Word. There is also a reference to include  Office UI Fabric components, which are the styles you can use to make your add-in look great. Finally, there is also a reference to **Home.js** script on this page, which implements the logic of the add-in.
 
-15. Lets examine the JavaScript code in **home.js**. Double-click **home.js** to open it in a code editor window.
+15. Let's examine the JavaScript code in **home.js**. Double-click **home.js** to open it in a code editor window.
 16. Walk through the code in **Home.js**. It includes a simple example to highlight the largest word in the user selection. Note at the end of the file there is an **errorHandler** function we will reuse in the lab to handle errors, as well as a **showNotification** function to display messages from the lab.  
 
-17. Lets clean up **Home.js** for our lab. Replace the content of the entire file with the following snippet. Your Home.js should look like this: 
+17. Let's clean up **Home.js** for our lab. Replace the content of the entire file with the following snippet. Your Home.js should look like this: 
 
 	````javascript
 	/// <reference path="/Scripts/FabricUI/MessageBanner.js" />
@@ -243,7 +243,7 @@ In this lab, you will get hands-on experience using two JavaScript APIs to inter
 	````
 
 21. Save and close **Home.html**.
-22. Lets try the add-in one more time to see the progress. Press the **{F5}** key to run the project in the Visual Studio debugger. The debugger should launch Word 2016. NOTE: Once Word opens, make sure you launch your add-in by clicking on the **Statement of Work** button on the ribbon. (and make sure to repeat this operation each time you F5)
+22. Let's try the add-in one more time to see the progress. Press the **{F5}** key to run the project in the Visual Studio debugger. The debugger should launch Word 2016. NOTE: Once Word opens, make sure you launch your add-in by clicking on the **Statement of Work** button on the ribbon. (and make sure to repeat this operation each time you F5)
 23. After you click on this button you should see your Office Add-in in the task pane on the right side of a new Word document, as shown in the following screen shot.
 
 	![Screenshot of the previous step](Images/Fig04.png)
@@ -388,7 +388,7 @@ In this lab, you will get hands-on experience using two JavaScript APIs to inter
 
 	![Screenshot of the previous step](Images/Fig08.png)
 
-11. Locate the [\\\O3652\O3652-2 Deep Dive in Office Word Add-ins\Starter Files](Starter Files) folder, you can find a xml file named **OpenXMLChart.xml**, add this XML file into **StatementOfWorkWeb** project.
+11. Locate the [Starter Files](./Starter Files) folder, you can find a xml file named **OpenXMLChart.xml**, add this XML file into **StatementOfWorkWeb** project.
 
 	![Screenshot of the previous step](Images/Fig09.png)
 
@@ -518,7 +518,7 @@ Congratulations! In this exercise you extended the Add-in's capabilities by addi
 
 	![Screenshot of the previous step](Images/Fig12.png)
 
-8. Locate the [\\\O3652\O3652-2 Deep Dive in Office Word Add-ins\Starter Files](Starter Files) folder, you can find a xml file named **documentSample.xml**, add this XML file into **StatementOfWorkWeb** project.
+8. Locate the [Starter Files](./Starter Files) folder, you can find a xml file named **documentSample.xml**, add this XML file into **StatementOfWorkWeb** project.
 
 	![Screenshot of the previous step](Images/Fig13.png)
 
@@ -555,7 +555,7 @@ Congratulations! In this exercise you extended the Add-in's capabilities by addi
 *In this exercise you will continue working on the Visual Studio solution for the StatementOfWork add-in you created on in the previous exercise. You will extend the add-in's capabilities by adding JavaScript code to replace an image in the  active Word document by using the inlinePicture object members.*
 
 1. In Visual Studio, open **Home.js** in **StatementOfWorkWeb** project. 
-2. Locate the [\\\O3652\O3652-2 Deep Dive in Office Word Add-ins\Starter Files](Starter Files) folder, you can find a document file named **base64Image.docx**, add this file into **StatementOfWorkWeb** project.
+2. Locate the [Starter Files](./Starter Files) folder, you can find a document file named **base64Image.docx**, add this file into **StatementOfWorkWeb** project.
 
 	![Screenshot of the previous step](Images/Fig15.png)
 
@@ -682,7 +682,7 @@ Congratulations! In this exercise you extended the Add-in's capabilities by addi
 *In this exercise, you will continue working on the Visual Studio solution for the StatementOfWork add-in you created in the previous steps. You will extend the add-in's capabilities by adding JavaScript code to insert an existing Word (docx) file at the end of the current document. This exercise is cummulative and assumes you completed  Exercise 2.*
 
 1. In Visual Studio, open **Home.js** in **StatementOfWorkWeb** project. 
-2. Locate the [\\\O3652\O3652-2 Deep Dive in Office Word Add-ins\Starter Files](Starter Files) folder, you can find a document file named **base64Document.docx**, add this file into **StatementOfWorkWeb** project.
+2. Locate the [Starter Files](./Starter Files) folder, you can find a document file named **base64Document.docx**, add this file into **StatementOfWorkWeb** project.
 
 	![Screenshot of the previous step](Images/Fig21.png)
 
