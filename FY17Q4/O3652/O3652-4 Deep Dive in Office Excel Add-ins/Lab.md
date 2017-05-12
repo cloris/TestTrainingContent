@@ -84,16 +84,16 @@ In this exercise you will create a new Office Add-in project in Visual Studio so
 	<bt:String id="Contoso.TaskpaneButton.Label" DefaultValue="Loan Appraisal" />
 	```
 
-8. Save your changes and press **{F5}** to try your changes. You should see you add-in deploy in Excel and a button appear on the Home Tab.
+10. Save your changes and press **{F5}** to try your changes. You should see you add-in deploy in Excel and a button appear on the Home Tab.
 
-	![Screenshot of Button on Ribbon](Images/Images/Fig04.png)
+	![Screenshot of Button on Ribbon](Images/Fig04.png)
 
 
 ## Exercise 2: Adding a Test Document to an Office Add-in project & Adding Bindings Between an Add-in and an Excel Workbook
 *In this exercise you continue to work on the LoanAppraisal project you created in the previous lab by integrating a preexisting Excel workbook into the development process. You will write code to create bindings on named ranges within the the Excel workbook named TestDoc.xlsx. You will also create event handlers so that the Add-in responds to the user when updating the Add-in user interface.*
 
 1. Ensure that you still have the **LoanAppraisal** Add-in project opened in Visual Studio.
-2. Locate [\\\O3652\O3652-4 Deep Dive in Office Excel Add-ins\Starter Files\TestDoc.xlsx?raw=true](TestDoc) folder, you can find a excel file named **TestDoc.xlsx**. Double-click on **TestDoc.xlsx** to open the workbook in Microsoft Excel.  You should see that the workbook provides mortgage loan information and a chart as shown in the following screen shot.  
+2. Locate [Starter Files](./Starter%20Files)folder, you can find a excel file named **TestDoc.xlsx**. Double-click on **TestDoc.xlsx** to open the workbook in Microsoft Excel.  You should see that the workbook provides mortgage loan information and a chart as shown in the following screen shot.  
 
 	![Screenshot of the previous step](Images/Fig05.png)  
 
@@ -679,13 +679,13 @@ In this exercise you will create a new Office Add-in project in Visual Studio so
 
 	![Screenshot of the previous step](Images/Fig10.png)  
 
-Congratulations! In exercise you wrote code to create bindings on named ranges within the the Excel workbook named TestDoc.xlsx. You also created event handlers so that the Add-in responds to the user when interacting with the Add-in user interface.
+Congratulations! In exercise you wrote code to create bindings on named ranges within the Excel workbook named TestDoc.xlsx. You also created event handlers so that the Add-in responds to the user when interacting with the Add-in user interface.
 
 ## Part 2: Host-specific - APIs that were introduced with Office 2016
 Host-specific - APIs that were introduced with Office 2016. This object model provides host-specific strongly-typed objects that correspond to familiar objects that you see when you use Office clients, and represents the future of Office JavaScript APIs. The host-specific APIs currently include the [Word JavaScript API](https://dev.office.com/reference/add-ins/word/word-add-ins-reference-overview) and the [Excel JavaScript API](https://dev.office.com/reference/add-ins/excel/application). In this part, we will introduce Excel JavaScript API.
 
 ## Exercise 3: Leverage the Excel JavaScript API
-In this exercise you will create a Excel Add-in that uses the Exel JavaScript API included in Excel 2016. 
+In this exercise you will create a Excel Add-in that uses the Excel JavaScript API included in Excel 2016. 
 
 1. Launch Visual Studio 2017, select **File | New | Project**. Expand **Templates**, **Visual C#**, **Office/SharePoint** ,**Add-ins**. Select **Excel Web Add-in**. Name the project **ExpenseReport** and click **OK**.  
 2. When you create a new Add-in for Office project, Visual Studio prompts you with the **Choose the add-in type** page of the **Create Office Add-in** dialog. This is the point where you select the type of Office Add-in you want to create. Leave the default setting with the radio button titled **Add new functionalities to Excel** and select **Finish** to continue. 

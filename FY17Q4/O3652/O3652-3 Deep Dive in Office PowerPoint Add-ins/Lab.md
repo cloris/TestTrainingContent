@@ -271,7 +271,7 @@ Office Add-ins let you add your solution where ever they run. In PowerPoint, add
 	![Screenshot of the previous step](Images/Fig10.png)
 
 6. Save and close **PowerPointTVManifest**.
-7. Select **HelloWorldWeb** project.
+7. Select **PowerPointTV** project.
 8. Open **Home.html**, find the div with the id **content-main** and it will look like the following.
 
     ```HTML
