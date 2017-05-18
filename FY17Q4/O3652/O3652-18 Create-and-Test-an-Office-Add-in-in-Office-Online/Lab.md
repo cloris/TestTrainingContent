@@ -23,7 +23,7 @@ sudo npm install -g npm
 ## Exercise 1: Create an add-in with the Yeoman generator
 
 1. Open a terminal/command prompt.
-2. Go to the C:\Dev\ folder on Windows or the ~/Desktop/add-ins directory on Mac.
+2. Create **Dev** folder and go to the C:\Dev\ folder on Windows or the ~/Desktop/add-ins directory on Mac.
 	![Screenshot of the previous step](Images/Fig01.png)
 
 3. Install yo (Yeoman) and generator-office globally using NPM if you have not installed.
@@ -52,12 +52,14 @@ sudo npm install -g npm
 	```cmd
 	npm install -g browser-sync
 	```
-    ![Screenshot of the previous step](Images/Fig05.png)
+    ![Screenshot of the previous step](Images/Fig06.png)
 
 8. Launch the local HTTPS site on **https://localhost:3000** by simply typing the following command in the command prompt/terminal:
     ```cmd
 	npm start
 	```
+	>NOTE: Browsersync will start a HTTPS server, which includes a self-signed SSL cert that your development environment must trust. Refer to our doc, [Adding Self-Signed Certificates as Trusted Root Certificate](https://github.com/OfficeDev/generator-office/blob/master/src/docs/ssl.md), for instructions on how to do this.
+
 9. You will find add-in look like as following screen shot.
     ![Screenshot of the previous step](Images/Fig07.png)
 
