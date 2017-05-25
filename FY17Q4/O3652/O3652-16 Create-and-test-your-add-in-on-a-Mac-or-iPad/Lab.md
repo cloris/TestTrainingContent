@@ -17,7 +17,7 @@ The following prerequisites have already been installed on Mac you are currently
 
 3. Run the Yeoman generator for Office Add-ins to create the project scaffolding. Use the following command: 
 	```cmd
-	`yo office`
+	yo office
 	```
 
 4. When prompted, supply the following information:
@@ -132,14 +132,15 @@ An Office Add-in is just a web app that is displayed within the Office UI and ca
  	```
  
 7. Save the **app.js** file. 
-9. Console.log statements above should be visible in the VorlonJS console.
-    ![Screenshot of the previous step](Images/Fig07.png)
 
-9. Go back to Excel, click on the "i" in the top right corner of the add-in pane and then select "Reload". You should see the new button in your add-in.
+8. Go back to Excel, click on the "i" in the top right corner of the add-in pane and then select "Reload". You should see the new button in your add-in.
 	![Screenshot of the previous step](Images/Fig08.png)
 
-10. Select an empty cell in the worksheet and click the new button that says "Write data to selection". You should see "Office add-ins are awesome!" written to the cell.
+9. Select an empty cell in the worksheet and click the new button that says "Write data to selection". You should see "Office add-ins are awesome!" written to the cell.
 	![Screenshot of the previous step](Images/Fig09.png)
+
+10. Console.log statements above should be visible in the VorlonJS console.
+    ![Screenshot of the previous step](Images/Fig07.png)
 
 You have now completed building and debugging a new add-in entirely on the Mac. This Office add-in will run on all platform where Office supports add-ins.
 
