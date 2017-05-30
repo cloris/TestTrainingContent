@@ -104,15 +104,30 @@ In this exercise, you will create the ASP.NET MVC5 application and register it w
 ### Create the OneNote API Repository
 In this step you will create a repository class that will handle all communication with the OneNote API to interact with notebooks in your OneDrive for Business store.
 
-1. This exercise will heavily leverage the OneNote REST API. To simplify working with the REST services, we will use the popular [JSON.NET](http://www.newtonsoft.com/json) JSON framework for .NET.
- 1. Create a new folder in the project's **Models** folder named **JsonHelpers**.
- 2. Copy all the C# files provided with this lab, located in the [\\\O3653\O3653-7 Deep Dive into the Office 365 APIs for OneNote services\Labs\Labfiles](Labs/Labfiles/JsonHelpers) folder, into this new **JsonHelpers** folder you just added in your project.
+1. This exercise is based on the project located in the  [\\O3653\O3653-7 Deep Dive into the Office 365 APIs for OneNote services\Starter Project\OneNoteDev](Starter Project/OneNoteDev) folder. Open the project with Visual Studio 2017. 
+
+   Notice: update web.config and add values for below items.  These values can be found on Exercise 1's web.config.
+
+       <add key="ida:ClientId" value="" />
+       <add key="ida:ClientSecret" value="" />
+       <add key="ida:Domain" value="" />
+       <add key="ida:TenantId" value="" />
+       <add key="ida:AppId" value="" />
+       <add key="ida:AppSecret" value="" />
+
+2. This exercise will heavily leverage the OneNote REST API. To simplify working with the REST services, we will use the popular [JSON.NET](http://www.newtonsoft.com/json) JSON framework for .NET.
+
+3. Create a new folder in the project's **Models** folder named **JsonHelpers**.
+
+4. Copy all the C# files provided with this lab, located in the [\\\O3653\O3653-7 Deep Dive into the Office 365 APIs for OneNote services\Labs\Labfiles](Labs/Labfiles/JsonHelpers) folder, into this new **JsonHelpers** folder you just added in your project.
 
   > **Note:** These files were created using the handy utility in Visual Studio: [Paste JSON as Classes](http://blogs.msdn.com/b/webdev/archive/2012/12/18/paste-json-as-classes-in-asp-net-and-web-tools-2012-2-rc.aspx).
 
-2. Create model objects for the OneNote notebook, section & page:
- 1. Add a new class named **Notebook** to the **Models** folder in the project.
- 2. Add the following code to the `Notebook` class:
+5. Create model objects for the OneNote notebook, section & page:
+
+6. Add a new class named **Notebook** to the **Models** folder in the project.
+
+7. Add the following code to the `Notebook` class:
 
   ````c#
       public Notebook() {
@@ -132,8 +147,9 @@ In this step you will create a repository class that will handle all communicati
       public List<Section> Sections { get; set; }
   ````
 
- 3. Add a new class named **Section** to the **Models** folder in the project.
- 4. Add the following code to the `Section` class:
+8. Add a new class named **Section** to the **Models** folder in the project.
+
+9. Add the following code to the `Section` class:
 
   ````c#
       public Section() {
@@ -148,252 +164,252 @@ In this step you will create a repository class that will handle all communicati
       public List<NotePage> Pages { get; set; }
   ````
 
- 5. Add a new class named **NotePage** to the **Models** folder in the project.
- 6. Add the following code to the `NotePage` class:
+10. Add a new class named **NotePage** to the **Models** folder in the project.
 
-  ````c#
-      public string Id { get; set; }
-      public string Name { get; set; }
-      public DateTime CreatedDateTime { get; set; }
-      public DateTime LastModifiedDateTime { get; set; }
-      public string ContentUrl { get; set; }
-      public string Content { get; set; }
-      public string PageUrl { get; set; }
-      public string WebUrl { get; set; }
-      public string ClientUrl { get; set; }
-  ````
+11. Add the following code to the `NotePage` class:
 
-3. Create the repository class for communicating with the OneNote via Microsoft Graph:
- 1. Add a new class to the **Models** folder named **NotebookRepository**.
- 2. Ensure the following `using` statements are present at the top of the `NotebookRepository` class:
+   ````c#
+       public string Id { get; set; }
+       public string Name { get; set; }
+       public DateTime CreatedDateTime { get; set; }
+       public DateTime LastModifiedDateTime { get; set; }
+       public string ContentUrl { get; set; }
+       public string Content { get; set; }
+       public string PageUrl { get; set; }
+       public string WebUrl { get; set; }
+       public string ClientUrl { get; set; }
+   ````
 
-  ````c#
-  using System.Collections.Generic;
-  using System.Linq;
-  using System.Threading.Tasks;
-  using System.Net.Http;
-  using Newtonsoft.Json;
-  ````
+12. Create the repository class for communicating with the OneNote via Microsoft Graph:
 
- 3. Add the following private fields and class constructor to the `NotebookRepository` class:
+13. Add a new class to the **Models** folder named **NotebookRepository**.
 
-  ````c#
-          private HttpClient _client;
+14. Ensure the following `using` statements are present at the top of the `NotebookRepository` class:
 
-          private string _msGraphResourceId = string.Empty;
-          private string _msGraphEndpoint = string.Empty;
+   ````c#
+   using System.Collections.Generic;
+   using System.Linq;
+   using System.Threading.Tasks;
+   using System.Net.Http;
+   using Newtonsoft.Json;
+   ````
 
-          public NotebookRepository(string accessToken)
-          {
-              _client = new HttpClient();
-              _client.DefaultRequestHeaders.Add("Accept", "application/json");
+15. Add the following private fields and class constructor to the `NotebookRepository` class:
 
-              // set the access token on all requests to the Microsoft Graph API
-              _client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+   ````c#
+           private HttpClient _client;
 
-              _msGraphEndpoint = "https://graph.microsoft.com/beta";
-              _msGraphResourceId = "https://graph.microsoft.com/";
-          }
-  ````
+           private string _msGraphResourceId = string.Empty;
+           private string _msGraphEndpoint = string.Empty;
 
- 4. Add a method to get a list of all OneNote notebooks for the currently logged in user's OneDrive for Business store. Add the following code to the `NotebookRepository` class:
+           public NotebookRepository(string accessToken)
+           {
+               _client = new HttpClient();
+               _client.DefaultRequestHeaders.Add("Accept", "application/json");
 
-  ````c#
-              public async Task<IEnumerable<Notebook>> GetNotebooks()
-          {
+               // set the access token on all requests to the Microsoft Graph API
+               _client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
 
-              // create query
-              var query = _msGraphEndpoint + "/me/onenote/notebooks";
+               _msGraphEndpoint = "https://graph.microsoft.com/beta";
+               _msGraphResourceId = "https://graph.microsoft.com/";
+           }
+   ````
 
-              // create request
-              var request = new HttpRequestMessage(HttpMethod.Get, query);
+16. Add a method to get a list of all OneNote notebooks for the currently logged in user's OneDrive for Business store. Add the following code to the `NotebookRepository` class:
 
-              // issue request & get response
-              var response = await _client.SendAsync(request);
-              string responseString = await response.Content.ReadAsStringAsync();
-              var jsonResponse = JsonConvert.DeserializeObject<JsonHelpers.NotebooksJson>(responseString);
+   ````c#
+               public async Task<IEnumerable<Notebook>> GetNotebooks()
+           {
 
-              // convert to model object
-              var notebooks = new List<Notebook>();
+               // create query
+               var query = _msGraphEndpoint + "/me/onenote/notebooks";
 
-              // check for null if the user's OneDrive for Business is not provisioned
-              if (jsonResponse.Notebooks != null)
-              {
-                  foreach (var notebook in jsonResponse.Notebooks)
-                  {
-                      var item = new Notebook
-                      {
-                          Id = notebook.Id,
-                          Name = notebook.Name,
-                          NotebookUrl = notebook.NotebookUrl,
-                          IsDefault = notebook.IsDefault,
-                          CreatedDateTime = notebook.CreatedTime,
-                          LastModifiedDateTime = notebook.LastModifiedTime,
-                          SectionsUrl = notebook.SectionsUrl,
-                          SectionGroupsUrl = notebook.SectionGroupsUrl,
-                          ClientUrl = notebook.Links.OneNoteClientUrl.href,
-                          WebUrl = notebook.Links.OneNoteWebUrl.href
-                      };
+               // create request
+               var request = new HttpRequestMessage(HttpMethod.Get, query);
 
-                      notebooks.Add(item);
-                  }
-              }
+               // issue request & get response
+               var response = await _client.SendAsync(request);
+               string responseString = await response.Content.ReadAsStringAsync();
+               var jsonResponse = JsonConvert.DeserializeObject<JsonHelpers.NotebooksJson>(responseString);
 
-              return notebooks.OrderBy(n => n.Name).ToList();
-          }
+               // convert to model object
+               var notebooks = new List<Notebook>();
 
-  ````
+               // check for null if the user's OneDrive for Business is not provisioned
+               if (jsonResponse.Notebooks != null)
+               {
+                   foreach (var notebook in jsonResponse.Notebooks)
+                   {
+                       var item = new Notebook
+                       {
+                           Id = notebook.Id,
+                           Name = notebook.Name,
+                           NotebookUrl = notebook.NotebookUrl,
+                           IsDefault = notebook.IsDefault,
+                           CreatedDateTime = notebook.CreatedTime,
+                           LastModifiedDateTime = notebook.LastModifiedTime,
+                           SectionsUrl = notebook.SectionsUrl,
+                           SectionGroupsUrl = notebook.SectionGroupsUrl,
+                           ClientUrl = notebook.Links.OneNoteClientUrl.href,
+                           WebUrl = notebook.Links.OneNoteWebUrl.href
+                       };
 
- 5. Add the following code to get a single notebook based on the ID specified:
+                       notebooks.Add(item);
+                   }
+               }
 
-  ````c#
-              public async Task<Notebook> GetNotebook(string notebookid)
-          {
+               return notebooks.OrderBy(n => n.Name).ToList();
+           }
+   ````
 
-              // create query
-              var query = string.Format("{0}/me/onenote/notebooks/?$top=1&$filter=id eq '{1}'", _msGraphEndpoint, notebookid);
+17. Add the following code to get a single notebook based on the ID specified:
 
-              // create request
-              var request = new HttpRequestMessage(HttpMethod.Get, query);
+   ````c#
+               public async Task<Notebook> GetNotebook(string notebookid)
+           {
 
-              // issue request & get response
-              var response = await _client.SendAsync(request);
-              string responseString = await response.Content.ReadAsStringAsync();
-              var jsonResponse = JsonConvert.DeserializeObject<JsonHelpers.NotebooksJson>(responseString).Notebooks[0];
+               // create query
+               var query = string.Format("{0}/me/onenote/notebooks/?$top=1&$filter=id eq '{1}'", _msGraphEndpoint, notebookid);
 
-              // convert to model object
-              var notebook = new Notebook
-              {
-                  Id = jsonResponse.Id,
-                  Name = jsonResponse.Name,
-                  NotebookUrl = jsonResponse.NotebookUrl,
-                  IsDefault = jsonResponse.IsDefault,
-                  CreatedDateTime = jsonResponse.CreatedTime,
-                  LastModifiedDateTime = jsonResponse.LastModifiedTime,
-                  SectionsUrl = jsonResponse.SectionsUrl,
-                  SectionGroupsUrl = jsonResponse.SectionGroupsUrl,
-                  ClientUrl = jsonResponse.Links.OneNoteClientUrl.href,
-                  WebUrl = jsonResponse.Links.OneNoteWebUrl.href
-              };
+               // create request
+               var request = new HttpRequestMessage(HttpMethod.Get, query);
 
-              return notebook;
-          }
+               // issue request & get response
+               var response = await _client.SendAsync(request);
+               string responseString = await response.Content.ReadAsStringAsync();
+               var jsonResponse = JsonConvert.DeserializeObject<JsonHelpers.NotebooksJson>(responseString).Notebooks[0];
 
-  ````
+               // convert to model object
+               var notebook = new Notebook
+               {
+                   Id = jsonResponse.Id,
+                   Name = jsonResponse.Name,
+                   NotebookUrl = jsonResponse.NotebookUrl,
+                   IsDefault = jsonResponse.IsDefault,
+                   CreatedDateTime = jsonResponse.CreatedTime,
+                   LastModifiedDateTime = jsonResponse.LastModifiedTime,
+                   SectionsUrl = jsonResponse.SectionsUrl,
+                   SectionGroupsUrl = jsonResponse.SectionGroupsUrl,
+                   ClientUrl = jsonResponse.Links.OneNoteClientUrl.href,
+                   WebUrl = jsonResponse.Links.OneNoteWebUrl.href
+               };
 
- 6. Add the following code to get all the sections in the specified notebook using the Microsoft Graph. This should go in the `NotebookRepository` class.
+               return notebook;
+           }
+   ````
 
-  ````c#
-              public async Task<Notebook> GetNotebookSections(string notebookid)
-          {
-              var notebook = await GetNotebook(notebookid);
-              return await GetNotebookSections(notebook);
-          }
+18. Add the following code to get all the sections in the specified notebook using the Microsoft Graph. This should go in the `NotebookRepository` class.
 
-          public async Task<Notebook> GetNotebookSections(Notebook notebook)
-          {
+   ````c#
+               public async Task<Notebook> GetNotebookSections(string notebookid)
+           {
+               var notebook = await GetNotebook(notebookid);
+               return await GetNotebookSections(notebook);
+           }
 
-              // create query
-              var query = notebook.SectionsUrl;
+           public async Task<Notebook> GetNotebookSections(Notebook notebook)
+           {
 
-              // create request
-              var request = new HttpRequestMessage(HttpMethod.Get, query);
+               // create query
+               var query = notebook.SectionsUrl;
 
-              // issue request & get response
-              var response = await _client.SendAsync(request);
-              string responseString = await response.Content.ReadAsStringAsync();
-              var jsonResponse = JsonConvert.DeserializeObject<JsonHelpers.SectionsJson>(responseString);
+               // create request
+               var request = new HttpRequestMessage(HttpMethod.Get, query);
 
-              // convert to model object
-              foreach (var item in jsonResponse.Sections)
-              {
-                  var section = new Section
-                  {
-                      Id = item.Id,
-                      Name = item.Name,
-                      CreatedDateTime = item.CreatedTime,
-                      LastModifiedDateTime = item.LastModifiedTime,
-                      PagesUrl = item.PagesUrl
-                  };
-                  notebook.Sections.Add(section);
-              }
+               // issue request & get response
+               var response = await _client.SendAsync(request);
+               string responseString = await response.Content.ReadAsStringAsync();
+               var jsonResponse = JsonConvert.DeserializeObject<JsonHelpers.SectionsJson>(responseString);
 
-              return notebook;
-          }
-  ````
+               // convert to model object
+               foreach (var item in jsonResponse.Sections)
+               {
+                   var section = new Section
+                   {
+                       Id = item.Id,
+                       Name = item.Name,
+                       CreatedDateTime = item.CreatedTime,
+                       LastModifiedDateTime = item.LastModifiedTime,
+                       PagesUrl = item.PagesUrl
+                   };
+                   notebook.Sections.Add(section);
+               }
 
-  1. Next, add the following code to load all the pages within the specified notebook section. This should also be added to the `NotebookRepository` class.
+               return notebook;
+           }
+   ````
 
-  ````c#
-             public async Task<Notebook> GetNotebookPages(string notebookid, string sectionid)
-          {
-              var notebook = await GetNotebook(notebookid);
-              notebook = await GetNotebookSections(notebook);
-              return await GetNotebookPages(notebook, sectionid);
-          }
+   1. Next, add the following code to load all the pages within the specified notebook section. This should also be added to the `NotebookRepository` class.
 
-          public async Task<Notebook> GetNotebookPages(Notebook notebook, string sectionid)
-          {
+   ````c#
+              public async Task<Notebook> GetNotebookPages(string notebookid, string sectionid)
+           {
+               var notebook = await GetNotebook(notebookid);
+               notebook = await GetNotebookSections(notebook);
+               return await GetNotebookPages(notebook, sectionid);
+           }
 
-              // create query for the specified section...
-              var section = notebook.Sections.First(s => s.Id == sectionid);
+           public async Task<Notebook> GetNotebookPages(Notebook notebook, string sectionid)
+           {
 
-              // create request to get all the pages in the section
-              var request = new HttpRequestMessage(HttpMethod.Get, section.PagesUrl);
+               // create query for the specified section...
+               var section = notebook.Sections.First(s => s.Id == sectionid);
 
-              // issue request & get response
-              var response = await _client.SendAsync(request);
+               // create request to get all the pages in the section
+               var request = new HttpRequestMessage(HttpMethod.Get, section.PagesUrl);
 
-              // convert to JSON object
-              string responseString = await response.Content.ReadAsStringAsync();
-              var jsonPages = JsonConvert.DeserializeObject<JsonHelpers.PagesJson>(responseString);
+               // issue request & get response
+               var response = await _client.SendAsync(request);
 
-              // loop through all pages
-              foreach (var jsonPage in jsonPages.Pages)
-              {
-                  // convert pages to model objects
-                  var page = new NotePage
-                  {
-                      Id = jsonPage.Id,
-                      Name = jsonPage.Title,
-                      CreatedDateTime = jsonPage.CreatedTime,
-                      LastModifiedDateTime = jsonPage.LastModifiedTime,
-                      PageUrl = jsonPage.PageUrl,
-                      ClientUrl = jsonPage.Links.OneNoteClientUrl.href,
-                      WebUrl = jsonPage.Links.OneNoteWebUrl.href,
-                      ContentUrl = jsonPage.ContentUrl
-                  };
+               // convert to JSON object
+               string responseString = await response.Content.ReadAsStringAsync();
+               var jsonPages = JsonConvert.DeserializeObject<JsonHelpers.PagesJson>(responseString);
 
-                  // get the body of the page
-                  request = new HttpRequestMessage(HttpMethod.Get, page.ContentUrl);
-                  response = await _client.SendAsync(request);
-                  page.Content = await response.Content.ReadAsStringAsync();
+               // loop through all pages
+               foreach (var jsonPage in jsonPages.Pages)
+               {
+                   // convert pages to model objects
+                   var page = new NotePage
+                   {
+                       Id = jsonPage.Id,
+                       Name = jsonPage.Title,
+                       CreatedDateTime = jsonPage.CreatedTime,
+                       LastModifiedDateTime = jsonPage.LastModifiedTime,
+                       PageUrl = jsonPage.PageUrl,
+                       ClientUrl = jsonPage.Links.OneNoteClientUrl.href,
+                       WebUrl = jsonPage.Links.OneNoteWebUrl.href,
+                       ContentUrl = jsonPage.ContentUrl
+                   };
 
-                  // add page to section
-                  section.Pages.Add(page);
-              }
+                   // get the body of the page
+                   request = new HttpRequestMessage(HttpMethod.Get, page.ContentUrl);
+                   response = await _client.SendAsync(request);
+                   page.Content = await response.Content.ReadAsStringAsync();
 
-              return notebook;
-          }
+                   // add page to section
+                   section.Pages.Add(page);
+               }
 
-  ````
+               return notebook;
+           }
+   ````
 
- 7. And finally, add the following method to delete a specified page:
+19. And finally, add the following method to delete a specified page:
 
-  ````c#
-       public async Task DeletePage(string id)
-          {
+   ````c#
+        public async Task DeletePage(string id)
+           {
 
-              // create query
-              var query = string.Format("{0}/me/onenote/pages/{1}", _msGraphEndpoint, id);
+               // create query
+               var query = string.Format("{0}/me/onenote/pages/{1}", _msGraphEndpoint, id);
 
-              // create request
-              var request = new HttpRequestMessage(HttpMethod.Delete, query);
+               // create request
+               var request = new HttpRequestMessage(HttpMethod.Delete, query);
 
-              // issue request & get response
-              await _client.SendAsync(request);
-          }
-  ````
+               // issue request & get response
+               await _client.SendAsync(request);
+           }
+   ````
 
 ### Add Navigation
 In this step you will create a link on home page to navigate to notebooks list page
@@ -434,11 +450,11 @@ In this step you will create a link on home page to navigate to notebooks list p
 In this step you will create the ASP.NET MVC controller and view for OneNote notebooks.
 
 1. Right-click the **Controllers** folder in the project and select **Add / Controller**.
- 1. In the **Add Scaffold** dialog, select **MVC 5 Controller - Empty**.
- 2. Click **Add**.
- 3. When prompted for a name, enter **NotebookController**.
- 4. Click **Add**.
-2. Within the `NotebookController` class, add the following using statement:
+2. In the **Add Scaffold** dialog, select **MVC 5 Controller - Empty**.
+3. Click **Add**.
+4. When prompted for a name, enter **NotebookController**.
+5. Click **Add**.
+6. Within the `NotebookController` class, replace using statement with below:
 
  ````c#
  using System.Web.Mvc;
@@ -472,16 +488,10 @@ In this step you will create the ASP.NET MVC controller and view for OneNote not
     ````
 
 4. Now add a view to render a list of the notebooks.
- 1. Right-click in the `Index()` method and select **Add View**.
-   1. Within the **Add View** dialog, set the following values:
-       - View Name: **Index**.
-       - Template: **List**.
-       - Model class: **Notebook (OneNoteDev.Models)**.
-       - Data context class: <blank>
-       - Create as partial view: **checked**
-       - Reference script libraries: **unchecked**
-   2. Click **Add**.
-5. **Replace** all of the code in the file with the following:
+
+5. Right-click the **Notebook** folder under **Views** in Visual Studio solution explorer and select **Add** - **MVC5 View Page**. Name it as **Index.cshtml** and click **Add**.
+
+6. **Replace** all of the code in the file with the following:
 
  ````html
  @model IEnumerable<OneNoteDev.Models.Notebook>
@@ -528,11 +538,11 @@ In this step you will create the ASP.NET MVC controller and view for OneNote not
 In this step you will create the ASP.NET MVC controller and view for OneNote notebook sections.
 
 1. Right-click the **Controllers** folder in the project and select **Add / Controller**.
- 1. In the **Add Scaffold** dialog, select **MVC 5 Controller - Empty**.
- 2. Click **Add**.
- 3. When prompted for a name, enter **SectionController**.
- 4. Click **Add**.
-2. Within the `SectionController` class, add the following using statement:
+2. In the **Add Scaffold** dialog, select **MVC 5 Controller - Empty**.
+3. Click **Add**.
+4. When prompted for a name, enter **SectionController**.
+5. Click **Add**.
+6. Within the `SectionController` class, replace using statement with below:
 
  ````c#
  using System.Linq;
@@ -569,16 +579,8 @@ In this step you will create the ASP.NET MVC controller and view for OneNote not
     ````
 
 4. Now add a view to render a list of the notebook sections.
- 1. Right-click in the `Index()` method and select **Add View**.
-   1. Within the **Add View** dialog, set the following values:
-       - View Name: **Index**.
-       - Template: **List**.
-       - Model class: **Section (OneNoteDev.Models)**.
-       - Data context class: <blank>
-       - Create as partial view: **checked**
-       - Reference script libraries: **unchecked**
-   2. Click **Add**.
-5. **Replace** all of the code in the file with the following:
+5. Right-click the **Section** folder under **Views** in Visual Studio solution explorer and select **Add** - **MVC5 View Page**. Name it as **Index.cshtml** and click **Add**.
+6. **Replace** all of the code in the file with the following:
 
  ````html
  @model IEnumerable<OneNoteDev.Models.Section>
@@ -622,8 +624,8 @@ In this step you will create the ASP.NET MVC controller and view for OneNote not
  ````
 
 6. For this controller you will need to create a special route.
- 1. Open the file **App_Start / RouteConfig.cs**.
- 2. Add the following code before the existing *default* route:
+7. Open the file **App_Start / RouteConfig.cs**.
+8. Add the following code before the existing *default* route:
 
   ````c#
               routes.MapRoute(
@@ -637,11 +639,11 @@ In this step you will create the ASP.NET MVC controller and view for OneNote not
 In this step you will create the ASP.NET MVC controller and view for pages within OneNote notebook sections.
 
 1. Right-click the **Controllers** folder in the project and select **Add / Controller**.
- 1. In the **Add Scaffold** dialog, select **MVC 5 Controller - Empty**.
- 2. Click **Add**.
- 3. When prompted for a name, enter **PageController**.
- 4. Click **Add**.
-2. Within the `PageController` class, add the following using statement:
+2. In the **Add Scaffold** dialog, select **MVC 5 Controller - Empty**.
+3. Click **Add**.
+4. When prompted for a name, enter **PageController**.
+5. Click **Add**.
+6. Within the `PageController` class, replace using statement with below:
 
  ````c#
  using System.Linq;
@@ -709,16 +711,8 @@ In this step you will create the ASP.NET MVC controller and view for pages withi
  ````
 
 5. Now add a view to render a list of the notebook sections.
- 1. Right-click in the `Index()` method and select **Add View**.
-   1. Within the **Add View** dialog, set the following values:
-       - View Name: **Index**.
-       - Template: **List**.
-       - Model class: **NotePage (OneNoteDev.Models)**.
-       - Data context class: <blank>
-       - Create as partial view: **checked**
-       - Reference script libraries: **unchecked**
-   2. Click **Add**.
-6. **Replace** all of the code in the file with the following:
+6. 1. Right-click the **Page** folder under **Views** in Visual Studio solution explorer and select **Add** - **MVC5 View Page**. Name it as **Index.cshtml** and click **Add**.
+7. **Replace** all of the code in the file with the following:
 
  ````html
  @model IEnumerable<OneNoteDev.Models.NotePage>
@@ -763,8 +757,8 @@ In this step you will create the ASP.NET MVC controller and view for pages withi
  ````
 
 7. For this controller you will need to create a special route.
- 1. Open the file **App_Start / RouteConfig.cs**.
- 2. Add the following code before the route you previously added for the sections:
+8. Open the file **App_Start / RouteConfig.cs**.
+9. Add the following code before the route you previously added for the sections:
 
   ````c#
               routes.MapRoute(
