@@ -31,8 +31,7 @@ In this step, you'll register an app on the Microsoft App Registration Portal. T
 
 
 ## Exercise 1: Configure a starter project using Azure Active Directory v2 authentication
-
-1. Locate the [Starter Project](Starter Project) folder that contains a starter project. The starter project is an ASP.NET MVC5 web application that you will update to call the Microsoft Graph.
+1. Locate the [Starter Project](./Starter%20Project) folder that contains a starter project. The starter project is an ASP.NET MVC5 web application that you will update to call the Microsoft Graph.
 2. **Launch** Visual Studio 2017 and **open** the starter project.
 	![Screenshot of the previous step](Images/01.png)
 
