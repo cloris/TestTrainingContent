@@ -24,7 +24,7 @@ In this step, you'll register an app on the Microsoft App Registration Portal. T
 7. Make sure the **Allow Implicit Flow** check box is selected, and enter **https://localhost:44304/** as the Redirect URI.
     > The Allow Implicit Flow option enables the OpenID Connect hybrid flow. During authentication, this enables the app to receive both sign-in info (the id_token) and artifacts (in this case, an authorization code) that the app uses to obtain an access token.
  
-8. Modify the **Microsoft Graph Permissions** value to include the required **Files.ReadWrite User.Read** scope.
+8. Modify the **Microsoft Graph Permissions** value to include the required **Files.ReadWrite, User.Read** scope.
 	![Screenshot of the previous step](Images/03.png)
 
 9. Choose **Save**.
@@ -41,7 +41,7 @@ In this step, you'll register an app on the Microsoft App Registration Portal. T
 	![Screenshot of the previous step](Images/02.png)
 
 2. Locate the app configuration keys in the appSettings element. Replace the **ENTER_YOUR_CLIENT_ID** and **ENTER_YOUR_SECRET** placeholder values with the values you just copied.
-3. Paste **Files.ReadWrite User User.Read** into the value for **ida:GraphScopes**.
+3. Paste **Files.ReadWrite User.Read** into the value for **ida:GraphScopes**.
 	![Screenshot of the previous step](Images/04.png)
 
 4. Press F5 to compile and launch your new application in the default browser.

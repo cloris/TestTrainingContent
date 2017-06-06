@@ -203,8 +203,8 @@
     <Compile Include="Helpers\IAuthProvider.cs" />
     <Compile Include="Helpers\SampleAuthProvider.cs" />
     <Compile Include="Helpers\SDKHelper.cs" />
-    <Compile Include="Models\GraphService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GraphService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TokenStorage\SessionTokenCache.cs" />
   </ItemGroup>
