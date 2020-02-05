@@ -1,3 +1,4 @@
+1.  Download [SPFX code](../../) 
 # Create your first Office add-in with the Outlook JavaScript APIs
 
 In this lab, you will use Visual Studio to create your first Outlook add-in using the Outlook JavaScript APIs. The add-in will allow the user to translate parts of a message they are composing into different languages.
